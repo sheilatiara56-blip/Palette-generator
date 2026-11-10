@@ -1,0 +1,200 @@
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80rem;
+  margin: 0 auto 2rem auto;
+  width: 100%;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #6d6daa;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-sub);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+/* Saved & About Page Styling */
+.saved-container, .about-container {
+  max-width: 80rem;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.empty-msg {
+  color: var(--text-sub);
+  margin-top: 1rem;
+}
+
+.saved-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.saved-card {
+  background-color: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.saved-colors {
+  display: flex;
+  height: 80px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.saved-swatch {
+  flex: 1;
+}
+
+.saved-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.tech-stack {
+  margin-top: 1.5rem;
+}
+
+.tech-stack ul {
+  margin-top: 0.5rem;
+  padding-left: 1.25rem;
+  line-height: 1.8;
+  color: var(--text-sub);
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .palette-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Ukuran & Bentuk Kartu Warna */
+.color-card {
+  position: relative;
+  height: 320px; 
+  border-radius: 1.25rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.color-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Bagian Atas Card (Index 01-05 & Lock Button) */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+}
+
+/* Bagian Bawah Card (Kotak Info HEX & RGB) */
+.card-bottom {
+  width: 100%;
+  z-index: 2;
+}
+
+.glass-panel {
+  width: 100%;
+  padding: 0.85rem 0.5rem;
+  border-radius: 0.85rem;
+  background-color: var(--glass-bg, rgba(0, 0, 0, 0.15));
+  border: 1px solid var(--glass-border, rgba(136, 132, 132, 0.2));
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.hex-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-mono, monospace);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--card-text, #ffffff);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+
+.rgb-text {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: var(--card-text-sub, rgba(255, 255, 255, 0.8));
+}
+
+.copy-badge {
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  background-color: var(--glass-bg, rgba(0, 0, 0, 0.2));
+  border: 1px solid var(--glass-border, rgb(255, 255, 255));
+  color: var(--card-text, #ffffff);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
