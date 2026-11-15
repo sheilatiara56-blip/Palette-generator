@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import HomePage from "./Pages/Home";
 import GeneratorPage from "./Pages/GeneratorPage";
 import SavedPalettesPage from "./Pages/SavedPalletes";
 import "./App.css";
-
 
 const hslToHex = (h, s, l) => {
   h = ((h % 360) + 360) % 360;
@@ -27,7 +27,7 @@ export default function App() {
   const [copiedAll, setCopiedAll] = useState(false);
   const [savedPalettes, setSavedPalettes] = useState([]);
 
-// Logika Acak Warna Berbasis Color Theory + Warna Netral
+  // Logika Acak Warna Berbasis Color Theory + Warna Netral
   const generatePalette = () => {
     const baseHue = Math.floor(Math.random() * 360);
     const modes = ["analogous", "monochromatic", "triadic"];
@@ -42,25 +42,20 @@ export default function App() {
       let s = 65;
       let l = 50;
 
-     
       const isNeutral = Math.random() < 0.25;
 
       if (isNeutral) {
-        s = Math.floor(Math.random() * 6); 
+        s = Math.floor(Math.random() * 6);
         const neutralType = Math.random();
 
         if (neutralType < 0.35) {
-          // 1. Putih / Off-White
-          l = Math.floor(Math.random() * 9) + 88;
+          l = Math.floor(Math.random() * 9) + 88; // Putih / Off-White
         } else if (neutralType < 0.7) {
-          // 2. Hitam / Off-Black (Charcoal)
-          l = Math.floor(Math.random() * 11) + 10;
+          l = Math.floor(Math.random() * 11) + 10; // Hitam / Off-Black
         } else {
-          // 3. Abu-abu
-          l = Math.floor(Math.random() * 26) + 40;
+          l = Math.floor(Math.random() * 26) + 40; // Abu-abu
         }
       } else {
-        // Logika Harmoni Warna Biasa
         if (mode === "analogous") {
           h = baseHue + (i - 2) * 15;
           s = Math.floor(Math.random() * 20) + 60;
@@ -125,6 +120,10 @@ export default function App() {
   const handleDeleteSaved = (index) => {
     setSavedPalettes((prev) => prev.filter((_, i) => i !== index));
   };
+  const handleLoadPalette = (colors) => {
+    setPalette([...colors]);
+    setLocked([false, false, false, false, false]);
+  };
 
   const hexToRgb = (hex) => {
     if (!hex) return "";
@@ -162,32 +161,38 @@ export default function App() {
       <div className="app-container">
         <Navbar />
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route
-            path="/"
+            path="/generator"
             element={
-              <GeneratorPage
-                palette={palette}
-                locked={locked}
-                copiedStates={copiedStates}
-                copiedAll={copiedAll}
-                onGenerate={generatePalette}
-                onToggleLock={toggleLock}
-                onUnlockAll={unlockAll}
-                onCopy={copyToClipboard}
-                onCopyAll={copyAllColors}
-                onSavePalette={handleSavePalette}
-                hexToRgb={hexToRgb}
-                isColorLight={isColorLight}
-              />
+              <div className="fade-in">
+                <GeneratorPage
+                  palette={palette}
+                  locked={locked}
+                  copiedStates={copiedStates}
+                  copiedAll={copiedAll}
+                  onGenerate={generatePalette}
+                  onToggleLock={toggleLock}
+                  onUnlockAll={unlockAll}
+                  onCopy={copyToClipboard}
+                  onCopyAll={copyAllColors}
+                  onSavePalette={handleSavePalette}
+                  hexToRgb={hexToRgb}
+                  isColorLight={isColorLight}
+                />
+              </div>
             }
           />
-          <Route
+        <Route
             path="/saved"
             element={
-              <SavedPalettesPage
-                savedPalettes={savedPalettes}
-                onDeletePalette={handleDeleteSaved}
-              />
+              <div className="fade-in">
+                <SavedPalettesPage
+                  savedPalettes={savedPalettes}
+                  onDeletePalette={handleDeleteSaved}
+                  onLoadPalette={handleLoadPalette}
+                />
+              </div>
             }
           />
         </Routes>
