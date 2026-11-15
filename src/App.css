@@ -18,6 +18,13 @@ body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   min-height: 100vh;
 }
+body {
+  background-color: #0b0f19;
+  color: #f8fafc;
+}
+h1, h2, h3 {
+  color: #ffffff;
+}
 
 .app-container {
   min-height: 100vh;
@@ -378,6 +385,7 @@ button:active, .btn-primary:active, .btn-secondary:active {
   line-height: 1.15;
   margin-bottom: 1.25rem;
   max-width: 800px;
+  color: #ffffff; 
 }
 
 .text-gradient {
